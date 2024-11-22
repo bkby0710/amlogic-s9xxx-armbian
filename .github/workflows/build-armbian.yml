@@ -196,6 +196,7 @@ on:
         type: choice
         options:
           - ophub/kernel
+          - bkby0710/amlogic-s9xxx-armbian
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
@@ -230,7 +231,7 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - bkby
 
 env:
   TZ: America/New_York
@@ -293,7 +294,7 @@ jobs:
           df -hT ${PWD}
           git clone -q --single-branch --depth=1 --branch=main https://github.com/armbian/build.git build
           ln -sf /builder/build ${GITHUB_WORKSPACE}/build
-          ln -sf /builder/build /home/runner/work/_actions/ophub/amlogic-s9xxx-armbian/main/build
+          ln -sf /builder/build /home/runner/work/_actions/bkby0710/amlogic-s9xxx-armbian/main/build
           echo "status=success" >> ${GITHUB_OUTPUT}
 
       - name: Compile Armbian [ ${{ inputs.set_release }} ]
@@ -331,7 +332,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Rebuild Armbian
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: bkby0710/amlogic-s9xxx-armbian@main
         if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: armbian
