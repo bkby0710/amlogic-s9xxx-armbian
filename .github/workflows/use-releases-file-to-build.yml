@@ -231,7 +231,7 @@ on:
         options:
           - ophub
           - angel
-          - yourname
+          - bkby
 
 env:
   TZ: America/New_York
